@@ -208,17 +208,19 @@
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/pio_sdk4.js"></script>
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/load.js"></script>
     <!-- 禁止f12 右键 -->
-//禁用调试工具
-var threshold = 160; // 打开控制台的宽或高阈值
-// 每秒检查一次
-var check = setInterval(function() {
-    if (window.outerWidth - window.innerWidth > threshold || 
-        window.outerHeight - window.innerHeight > threshold) {
-        // 如果打开控制台，则刷新页面
-        window.location.reload();
-    }
-}, 1000)
-
+<script>
+    //禁止右键
+    $(document).bind("contextmenu",function(){return false;});
+    //禁止选择
+    $(document).bind("selectstart",function(){return false;});
+    //禁止F12
+    document.onkeydown = function(){
+        if(window.event && window.event.keyCode == 123) {
+    	    event.keyCode = 0;
+            event.returnValue = false;
+        }
+       }
+</script>
 
     <body oncontextmenu=self.event.returnValue=false>
 </body>
