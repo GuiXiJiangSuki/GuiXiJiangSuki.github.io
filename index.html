@@ -21,6 +21,18 @@
 </head>
 
 <body>
+
+<script>
+	//按键触发
+document.onkeydown = function(){
+    //禁止ctrl+u
+    if (event.ctrlKey && window.event.keyCode==85){
+    return false;
+    }
+    }
+</script>
+
+    
     <div id="body-wrap">
         <nav class="not_index_bg" id="nav" style="background-image:url(/img/cat.jpg)">
             <div id="page_site-info">
