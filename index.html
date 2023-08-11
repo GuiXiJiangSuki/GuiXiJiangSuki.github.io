@@ -208,41 +208,16 @@
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/pio_sdk4.js"></script>
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/load.js"></script>
     <!-- 禁止f12 右键 -->
-((function() {
-    var callbacks = [],
-        timeLimit = 50,
-        open = false;
-    setInterval(loop, 1);
-    return {
-        addListener: function(fn) {
-            callbacks.push(fn);
-        },
-        cancleListenr: function(fn) {
-            callbacks = callbacks.filter(function(v) {
-                return v !== fn;
-            });
-        }
+//禁用调试工具
+var threshold = 160; // 打开控制台的宽或高阈值
+// 每秒检查一次
+var check = setInterval(function() {
+    if (window.outerWidth - window.innerWidth > threshold || 
+        window.outerHeight - window.innerHeight > threshold) {
+        // 如果打开控制台，则刷新页面
+        window.location.reload();
     }
-    function loop() {
-        var startTime = new Date();
-        debugger;
-        if (new Date() - startTime > timeLimit) {
-            if (!open) {
-                callbacks.forEach(function(fn) {
-                    fn.call(null);
-                });
-            }
-            open = true;
-            window.stop();
-            alert('不要扒我了');
-            window.location.reload();
-        } else {
-            open = false;
-        }
-    }
-})()).addListener(function() {
-    window.location.reload();
-});
+}, 1000)
 
 
     <body oncontextmenu=self.event.returnValue=false>
