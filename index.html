@@ -208,14 +208,42 @@
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/pio_sdk4.js"></script>
     <script src="https://a.vincent1230.top/211214_JiaRanLive2D/load.js"></script>
 
-    //禁用F12
-window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-    // 判断是否按下F12，F12键码为123
-    if (event.keyCode == 123) {
-    event.preventDefault(); // 阻止默认事件行为
-    window.event.returnValue = false;
+((function() {
+    var callbacks = [],
+        timeLimit = 50,
+        open = false;
+    setInterval(loop, 1);
+    return {
+        addListener: function(fn) {
+            callbacks.push(fn);
+        },
+        cancleListenr: function(fn) {
+            callbacks = callbacks.filter(function(v) {
+                return v !== fn;
+            });
+        }
     }
-}
+    function loop() {
+        var startTime = new Date();
+        debugger;
+        if (new Date() - startTime > timeLimit) {
+            if (!open) {
+                callbacks.forEach(function(fn) {
+                    fn.call(null);
+                });
+            }
+            open = true;
+            window.stop();
+            alert('不要扒我了');
+            window.location.reload();
+        } else {
+            open = false;
+        }
+    }
+})()).addListener(function() {
+    window.location.reload();
+});
+
 
     <body oncontextmenu=self.event.returnValue=false>
 </body>
