@@ -1,97 +1,28 @@
-	//按键触发
-document.onkeydown = function(){
-    //禁止ctrl+u
-    if (event.ctrlKey && window.event.keyCode==85){
-    return false;
-    }
-    }
-//禁止鼠标右击
-      document.oncontextmenu = function() {
-        event.returnValue = false;
-      };
-      //禁用开发者工具F12
-      document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
-        let e = event || window.event || arguments.callee.caller.arguments[0];
-        if (e && e.keyCode == 123) {
-          e.returnValue = false;
-          return false;
+window.onload=function(){
+    var $msg = "请尊重劳动成果！www.kumic.cn";
+    document.onkeydown=function(){
+        var e = window.event||arguments[0];
+        if(e.keyCode==123){
+            //F12
+            alert($msg);
+            return false;
+        }else if((e.ctrlKey)&&(e.shiftKey)&&(e.keyCode==73)){
+            //ctrl + shift + i
+            alert($msg);
+            return false;
+        }else if((e.ctrlKey)&&(e.keyCode==85)){
+            //ctrl + U
+            alert($msg);
+            return false;
+        }else if((e.ctrlKey)&&(e.keyCode==83)){
+            //ctrl + U
+            alert($msg);
+            return false;
         }
-      };
-      let userAgent = navigator.userAgent;
-      if (userAgent.indexOf("Firefox") > -1) {
-        let checkStatus;
-        let devtools = /./;
-        devtools.toString = function() {
-          checkStatus = "on";
-        };
-        setInterval(function() {
-          checkStatus = "off";
-          console.log(devtools);
-          console.log(checkStatus);
-          console.clear();
-          if (checkStatus === "on") {
-            let target = "";
-            try {
-              window.open("about:blank", (target = "_self"));
-            } catch (err) {
-              let a = document.createElement("button");
-              a.onclick = function() {
-                window.open("about:blank", (target = "_self"));
-              };
-              a.click();
-            }
-          }
-        }, 200);
-      } else {
-        //禁用控制台
-        let ConsoleManager = {
-          onOpen: function() {
-            alert("Console is opened");
-          },
-          onClose: function() {
-            alert("Console is closed");
-          },
-          init: function() {
-            let self = this;
-            let x = document.createElement("div");
-            let isOpening = false,
-              isOpened = false;
-            Object.defineProperty(x, "id", {
-              get: function() {
-                if (!isOpening) {
-                  self.onOpen();
-                  isOpening = true;
-                }
-                isOpened = true;
-                return true;
-              }
-            });
-            setInterval(function() {
-              isOpened = false;
-              console.info(x);
-              console.clear();
-              if (!isOpened && isOpening) {
-                self.onClose();
-                isOpening = false;
-              }
-            }, 200);
-          }
-        };
-        ConsoleManager.onOpen = function() {
-          //打开控制台，跳转
-          let target = "";
-          try {
-            window.open("about:blank", (target = "_self"));
-          } catch (err) {
-            let a = document.createElement("button");
-            a.onclick = function() {
-              window.open("about:blank", (target = "_self"));
-            };
-            a.click();
-          }
-        };
-        ConsoleManager.onClose = function() {
-          alert("Console is closed!!!!!");
-        };
-        ConsoleManager.init();
-      }
+    }
+    document.oncontextmenu=function(){
+        //右击
+        alert($msg);
+        return false;
+    }
+}
