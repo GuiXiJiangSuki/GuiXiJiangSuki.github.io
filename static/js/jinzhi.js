@@ -1,5 +1,5 @@
 window.onload=function(){
-    var $msg = "请尊重劳动成果！www.kumic.cn";
+    var $msg = "请尊重劳动成果！不要白嫖鬼汐酱QAQ";
     document.onkeydown=function(){
         var e = window.event||arguments[0];
         if(e.keyCode==123){
