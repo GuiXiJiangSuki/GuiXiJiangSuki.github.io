@@ -1,4 +1,11 @@
- //禁止鼠标右击
+	//按键触发
+document.onkeydown = function(){
+    //禁止ctrl+u
+    if (event.ctrlKey && window.event.keyCode==85){
+    return false;
+    }
+    }
+//禁止鼠标右击
       document.oncontextmenu = function() {
         event.returnValue = false;
       };
